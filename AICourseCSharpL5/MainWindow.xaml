@@ -16,7 +16,7 @@
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="320*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="image_recongition" Margin="20" Grid.Row="1"/>
+            <Image x:Name="image_recognition" Margin="20" Grid.Row="1"/>
             <Button x:Name="button_openfile" Content="打开图片" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="201" Height="25"/>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
@@ -35,11 +35,11 @@
                     <RowDefinition Height="50*"/>
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Width="75"/>
-                <Button x:Name="button1_Copy" Content="Button" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                <Button x:Name="button1_Copy1" Content="Button" HorizontalAlignment="Left" Margin="10.4,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
-                <Button x:Name="button1_Copy2" Content="Button" HorizontalAlignment="Left" Margin="10,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
-                <Button x:Name="button1_Copy3" Content="Button" HorizontalAlignment="Left" Margin="10.2,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Grid.Column="1"/>
+                <Button x:Name="button_recognition_meal" Content="菜品识别" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="button_recognition_car" Content="车型识别" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                <Button x:Name="button_recognition_brand" Content="商标识别" HorizontalAlignment="Left" Margin="10.4,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
+                <Button x:Name="button_recognition_animal" Content="动物识别" HorizontalAlignment="Left" Margin="10,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
+                <Button x:Name="button_recognition_plant" Content="植物识别" HorizontalAlignment="Left" Margin="10.2,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Grid.Column="1"/>
             </Grid>
             <TextBox x:Name="textBox_item" Margin="20" Grid.Row="1" TextWrapping="Wrap" Text=""/>
             <TextBox x:Name="textBox_total" Margin="20" Grid.Row="2" TextWrapping="Wrap" Text=""/>
