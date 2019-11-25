@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AICourseCSharpL5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="图像识别" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="320*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="image_recongition" Margin="20" Grid.Row="1"/>
+            <Button x:Name="button_openfile" Content="打开图片" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="201" Height="25"/>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="101*"/>
+                <RowDefinition Height="130*"/>
+                <RowDefinition Height="130*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="button1_Copy" Content="Button" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                <Button x:Name="button1_Copy1" Content="Button" HorizontalAlignment="Left" Margin="10.4,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
+                <Button x:Name="button1_Copy2" Content="Button" HorizontalAlignment="Left" Margin="10,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
+                <Button x:Name="button1_Copy3" Content="Button" HorizontalAlignment="Left" Margin="10.2,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+            <TextBox x:Name="textBox_item" Margin="20" Grid.Row="1" TextWrapping="Wrap" Text=""/>
+            <TextBox x:Name="textBox_total" Margin="20" Grid.Row="2" TextWrapping="Wrap" Text=""/>
+        </Grid>
+        <CheckBox x:Name="checkBox_face" Content="检测人脸" HorizontalAlignment="Left" Margin="246,25,0,0" VerticalAlignment="Top" Height="16"/>
+
     </Grid>
 </Window>
