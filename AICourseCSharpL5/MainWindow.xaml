@@ -16,8 +16,10 @@
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="320*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="image_recognition" Margin="20" Grid.Row="1"/>
-            <Button x:Name="button_openfile" Content="打开图片" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="201" Height="25"/>
+            <Border BorderBrush="Gray" BorderThickness="0.5" Grid.Row="1" Margin="20">
+                <Image x:Name="image_recognition" />
+            </Border>
+            <Button x:Name="button_openfile" Content="打开图片" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="201" Height="25" Click="button_openfile_Click"/>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace AICourseCSharpL4
+namespace AICourseCSharpL5
 {
     public class IniFile
 
