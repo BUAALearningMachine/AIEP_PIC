@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,8 +78,9 @@ namespace AICourseCSharpL5
                 m_imgPath = fdlg.FileName;
             }
             var image = File.ReadAllBytes(m_imgPath);
-            // 调用图像主体检测，可能会抛出网络等异常，请使用try/catch捕获
-            var result = mClient.ObjectDetect(image);
+            image_recognition.Dispatcher.BeginInvoke(new Action(() => {
+           // 调用图像主体检测，可能会抛出网络等异常，请使用try/catch捕获
+           var result = mClient.ObjectDetect(image);
             Console.WriteLine(result);
             // 如果有可选参数
             int with_face = 0;
@@ -117,12 +119,147 @@ namespace AICourseCSharpL5
             bi.EndInit();
             image_recognition.Source = bi;
             image_recognition.InvalidateVisual();
+            }));
+            textBox_total.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var options_ag = new Dictionary<string, object>{
+                    {"baike_num", 5}
+                };
+                // 带参数调用通用物体识别
+                var result = mClient.AdvancedGeneral(image, options_ag);
+                var infos = result["result"];
+                List<string>infoList = new List<string>();
+                foreach (var info in infos)
+                {
+                    infoList.Add((string)info["keyword"]);
+                    infoList.Add((string)info["baike_info"]["description"]);
+                    break;
+                }
 
-            textBox_total.Dispatcher.BeginInvoke(new Action(() => { textBox_total.Text = "hello world "; }));
+                textBox_total.Text = string.Join("\n",infoList);
+            }));
 
 
         }
 
+        private void button_recognition_meal_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_item.Dispatcher.Invoke(new Action(() =>
+            {
+                // 如果有可选参数
+                var options = new Dictionary<string, object>{
+                    {"top_num", 3},
+                    {"filter_threshold", "0.7"},
+                    {"baike_num", 5}
+                };
+                // 带参数调用菜品识别
+                var image = File.ReadAllBytes(m_imgPath);
+                var result = mClient.DishDetect(image, options);
+                var foods = result["result"];
+                List<string> foodsInfos = new List<string>();
+                foreach (var food in foods)
+                {
+                    foodsInfos.Add(string.Format("菜品名称：{0}\n卡路里：{1}\n置信度：{2}", food["name"],food["calorie"],food["probability"]));
+                }
 
+                textBox_item.Text = string.Join("\n\n", foodsInfos);
+            }));
+        }
+
+        private void button_recognition_car_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_item.Dispatcher.Invoke(new Action(() =>
+            {
+            
+            var image = File.ReadAllBytes(m_imgPath);
+            // 调用车辆识别，可能会抛出网络等异常，请使用try/catch捕获
+            // 如果有可选参数
+            var options = new Dictionary<string, object>{
+                {"top_num", 3},
+                {"baike_num", 5}
+            };
+            // 带参数调用车辆识别
+            var result = mClient.CarDetect(image, options);
+            var cars = result["result"];
+            List<string> carsInfos = new List<string>();
+            foreach (var car in cars)
+            {
+                carsInfos.Add(string.Format("车型：{0}\n年份：{1}\n置信度：{2}", car["name"], car["year"], car["score"]));
+            }
+
+            textBox_item.Text = string.Join("\n\n", carsInfos);
+            }));
+
+        }
+
+        private void button_recognition_brand_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_item.Dispatcher.Invoke(new Action(() =>
+            {
+            
+            var image = File.ReadAllBytes(m_imgPath);
+            // 调用logo商标识别，可能会抛出网络等异常，请使用try/catch捕获
+            // 如果有可选参数
+           
+            // 带参数调用logo商标识别
+            var result = mClient.LogoSearch(image);
+            var logos = result["result"];
+            List<string> logoInfos = new List<string>();
+            foreach (var logo in logos)
+            {
+                logoInfos.Add(string.Format("商标：{0}\n置信度：{1}", logo["name"], logo["probability"]));
+            }
+
+            textBox_item.Text = string.Join("\n\n", logoInfos);
+            }));
+        }
+
+        private void button_recognition_animal_Click(object sender, RoutedEventArgs e)
+        {
+
+            textBox_item.Dispatcher.Invoke(new Action(() =>
+            {
+            var image = File.ReadAllBytes(m_imgPath);
+            // 调用动物识别，可能会抛出网络等异常，请使用try/catch捕获
+            // 如果有可选参数
+            var options = new Dictionary<string, object>{
+                {"top_num", 3},
+                {"baike_num", 5}
+            };
+            // 带参数调用动物识别
+            var result = mClient.AnimalDetect(image, options);
+            var animals = result["result"];
+            List<string> animalInfos = new List<string>();
+            foreach (var animal in animals)
+            {
+                animalInfos.Add(string.Format("动物：{0}\n置信度：{1}", animal["name"], animal["score"]));
+            }
+
+            textBox_item.Text = string.Join("\n\n", animalInfos);
+            }));
+        }
+
+        private void button_recognition_plant_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_item.Dispatcher.Invoke(new Action(() =>
+            {
+                var image = File.ReadAllBytes(m_imgPath);
+            // 调用植物识别，可能会抛出网络等异常，请使用try/catch捕获
+            // 如果有可选参数
+            var options = new Dictionary<string, object>{
+                {"baike_num", 5}
+            };
+            // 带参数调用植物识别
+            var result = mClient.PlantDetect(image, options);
+            var plants = result["result"];
+            List<string> plantInfos = new List<string>();
+            foreach (var plant in plants)
+            {
+                plantInfos.Add(string.Format("植物：{0}\n置信度：{1}", plant["name"], plant["score"]));
+            }
+
+            textBox_item.Text = string.Join("\n\n", plantInfos);
+            }));
+        }
     }
 }

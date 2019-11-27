@@ -37,11 +37,11 @@
                     <RowDefinition Height="50*"/>
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="button_recognition_meal" Content="菜品识别" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Width="75"/>
-                <Button x:Name="button_recognition_car" Content="车型识别" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                <Button x:Name="button_recognition_brand" Content="商标识别" HorizontalAlignment="Left" Margin="10.4,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
-                <Button x:Name="button_recognition_animal" Content="动物识别" HorizontalAlignment="Left" Margin="10,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
-                <Button x:Name="button_recognition_plant" Content="植物识别" HorizontalAlignment="Left" Margin="10.2,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Grid.Column="1"/>
+                <Button x:Name="button_recognition_meal" Content="菜品识别" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Width="75" Click="button_recognition_meal_Click"/>
+                <Button x:Name="button_recognition_car" Content="车型识别" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="button_recognition_car_Click"/>
+                <Button x:Name="button_recognition_brand" Content="商标识别" HorizontalAlignment="Left" Margin="10.4,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="button_recognition_brand_Click"/>
+                <Button x:Name="button_recognition_animal" Content="动物识别" HorizontalAlignment="Left" Margin="10,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="button_recognition_animal_Click"/>
+                <Button x:Name="button_recognition_plant" Content="植物识别" HorizontalAlignment="Left" Margin="10.2,9.6,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Grid.Column="1" Click="button_recognition_plant_Click"/>
             </Grid>
             <TextBox x:Name="textBox_item" Margin="20" Grid.Row="1" TextWrapping="Wrap" Text=""/>
             <TextBox x:Name="textBox_total" Margin="20" Grid.Row="2" TextWrapping="Wrap" Text=""/>
