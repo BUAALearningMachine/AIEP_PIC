@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Newtonsoft.Json.Linq;
 using Color = System.Drawing.Color;
 using Image = System.Drawing.Image;
@@ -55,6 +56,12 @@ namespace AICourseCSharpL5
             mClient = new Baidu.Aip.ImageClassify.ImageClassify(API_KEY,SECRET_KEY);
             mClient.Timeout = 60000; // 修改超时时间
         }
+
+
+        delegate void GeneralImage(string img);
+
+
+
 
         private void button_openfile_Click(object sender, RoutedEventArgs e)
         {
@@ -110,6 +117,10 @@ namespace AICourseCSharpL5
             bi.EndInit();
             image_recognition.Source = bi;
             image_recognition.InvalidateVisual();
+
+            textBox_total.Dispatcher.BeginInvoke(new Action(() => { textBox_total.Text = "hello world "; }));
+
+
         }
 
 
