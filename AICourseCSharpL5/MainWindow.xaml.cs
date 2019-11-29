@@ -66,6 +66,10 @@ namespace AICourseCSharpL5
 
         private void button_openfile_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+
+            
             OpenFileDialog fdlg = new OpenFileDialog();
             fdlg.Title = "选择图像识别文件";
             //fdlg.InitialDirectory = @"c:\";
@@ -139,11 +143,16 @@ namespace AICourseCSharpL5
                 textBox_total.Text = string.Join("\n",infoList);
             }));
 
-
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "错误");
+            }
         }
 
         private void button_recognition_meal_Click(object sender, RoutedEventArgs e)
         {
+            try {
             textBox_item.Dispatcher.Invoke(new Action(() =>
             {
                 // 如果有可选参数
@@ -164,10 +173,16 @@ namespace AICourseCSharpL5
 
                 textBox_item.Text = string.Join("\n\n", foodsInfos);
             }));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "错误");
+            }
         }
 
         private void button_recognition_car_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             textBox_item.Dispatcher.Invoke(new Action(() =>
             {
             
@@ -188,35 +203,47 @@ namespace AICourseCSharpL5
             }
 
             textBox_item.Text = string.Join("\n\n", carsInfos);
-            }));
+            })); }
+        catch (Exception exception)
+        {
+            MessageBox.Show(exception.Message, "错误");
+        }
 
         }
 
         private void button_recognition_brand_Click(object sender, RoutedEventArgs e)
         {
-            textBox_item.Dispatcher.Invoke(new Action(() =>
+            try
             {
-            
-            var image = File.ReadAllBytes(m_imgPath);
-            // 调用logo商标识别，可能会抛出网络等异常，请使用try/catch捕获
-            // 如果有可选参数
-           
-            // 带参数调用logo商标识别
-            var result = mClient.LogoSearch(image);
-            var logos = result["result"];
-            List<string> logoInfos = new List<string>();
-            foreach (var logo in logos)
-            {
-                logoInfos.Add(string.Format("商标：{0}\n置信度：{1}", logo["name"], logo["probability"]));
-            }
+                textBox_item.Dispatcher.Invoke(new Action(() =>
+                {
 
-            textBox_item.Text = string.Join("\n\n", logoInfos);
-            }));
+                    var image = File.ReadAllBytes(m_imgPath);
+                    // 调用logo商标识别，可能会抛出网络等异常，请使用try/catch捕获
+                    // 如果有可选参数
+
+                    // 带参数调用logo商标识别
+                    var result = mClient.LogoSearch(image);
+                    var logos = result["result"];
+                    List<string> logoInfos = new List<string>();
+                    foreach (var logo in logos)
+                    {
+                        logoInfos.Add(string.Format("商标：{0}\n置信度：{1}", logo["name"], logo["probability"]));
+                    }
+
+                    textBox_item.Text = string.Join("\n\n", logoInfos);
+                }));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "错误");
+            }
         }
 
         private void button_recognition_animal_Click(object sender, RoutedEventArgs e)
         {
 
+            try { 
             textBox_item.Dispatcher.Invoke(new Action(() =>
             {
             var image = File.ReadAllBytes(m_imgPath);
@@ -237,10 +264,16 @@ namespace AICourseCSharpL5
 
             textBox_item.Text = string.Join("\n\n", animalInfos);
             }));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "错误");
+            }
         }
 
         private void button_recognition_plant_Click(object sender, RoutedEventArgs e)
         {
+            try {  
             textBox_item.Dispatcher.Invoke(new Action(() =>
             {
                 var image = File.ReadAllBytes(m_imgPath);
@@ -260,6 +293,11 @@ namespace AICourseCSharpL5
 
             textBox_item.Text = string.Join("\n\n", plantInfos);
             }));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "错误");
+            }
         }
     }
 }
